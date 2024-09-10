@@ -11,7 +11,7 @@
 </head>
 <body>
     <h1 class="page-title">Welcome to the Contract Monthly Claim System</h1>
-
+    <!-- Form to allow lecturer to log in -->
     <form class="login-form">
         <h3>Lecturer Login</h3>
         <div class="form-group">
@@ -24,11 +24,14 @@
         </div>
     </form>
 
+    <!-- button to login which will redirect to lecturer dashboard -->
     <button class="btn-login" onclick="location.href='/Lecturer/Dashboard'">Login</button>
 
+    <!-- Option for lecturer to sign up if new, will redirect to sign up page -->
     <p class="signup-prompt">New here?</p>
     <a href="/Lecturer/SignUp" class="signup-link">Sign Up Here</a>
 
+    <!-- button for admin to login, will redirec to admin login page -->
     <button class="btn-admin-login" onclick="location.href='/Admin/Login'">Admin Login</button>
 </body>
 </html>
