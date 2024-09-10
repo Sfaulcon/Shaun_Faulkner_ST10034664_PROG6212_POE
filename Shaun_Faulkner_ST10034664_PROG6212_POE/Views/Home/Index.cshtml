@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Welcome</title>
+    </head>
+    <body>
+        <h1>Welcome to the Contract Montly Claim System</h1>
+
+        <form>
+            <h3>Lecturer Login</h3>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required /><br />
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required /><br />
+
+            <button type="submit">Login</button>
+        </form>
+
+        <button onclick="location.href='/Admin/Login'">Admin Login</button>
+    </body>
+</html>
