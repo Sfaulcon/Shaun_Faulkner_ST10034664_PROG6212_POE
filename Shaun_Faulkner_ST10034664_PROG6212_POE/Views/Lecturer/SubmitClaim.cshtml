@@ -1,5 +1,41 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewData["Title"] = "Submit Claim";
 }
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Submit Claim</title>
+    </head>
+    <body>
+        <h1>Submit Claim</h1>
+
+        <form>
+            <div>
+                <label for="Name">Name:</label>
+                <input type="text" id="Name" name="Name" />
+            </div>
+            <div>
+                <label for="Surname">Surname:</label>
+                <input type="text" id="Surname" name="Surname" />
+            </div>
+            <div>
+                <label for="Email">Email:</label>
+                <input type="email" id="Email" name="Email" />
+            </div>
+            <div>
+                <label for="HoursWorked">Hours Worked:</label>
+                <input type="number" id="HoursWorked" name="HoursWorked" />
+            </div>
+            <div>
+                <label for="SupportingDocuments">Supporting Documents:</label>
+                <input type="file" id="SupportingDocuments" name="SupportingDocuments" />
+            </div>
+
+            
+        </form>
+        <button onclick="location.href='/Lecturer/Dashboard'">Submit Claim</button>
+
+        <p><a href="/Lecturer/Dashboard">Back to Dashboard</a></p>
+    </body>
+</html>

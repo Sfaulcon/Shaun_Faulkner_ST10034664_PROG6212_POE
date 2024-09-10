@@ -8,11 +8,57 @@
         <title>Lecturer Dashboard</title>
     </head>
     <body>
-        <h1>Lecturer Dashboard</h1>
+        <div>
+            <h1>Lecturer Dashboard</h1>
+        </div>
+        <div>
+            <h2>Active Claims</h2>
 
-        <h2>Active Claims</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Lecturer Name</th>
+                    <th>Email</th>
+                    <th>Hours Worked</th>
+                    <th>Supporting Documents</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Shaun Faulkner</td>
+                    <td>shaunf@gmail.com</td>
+                    <td>12</td>
+                    <td><a href="#">View Document</a></td>
+                    <td>Pending</td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+        <div>
+            <h2>Past Claims</h2>
 
-        <h2>Past Claims</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Lecturer Name</th>
+                    <th>Email</th>
+                    <th>Hours Worked</th>
+                    <th>Supporting Documents</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Shaun Faulkner</td>
+                    <td>shaunf@gmail.com</td>
+                    <td>12</td>
+                    <td><a href="#">View Document</a></td>
+                    <td>Approved</td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
 
         <button onclick="location.href='/Lecturer/SubmitClaim'">Submit New Claim</button>
     </body>

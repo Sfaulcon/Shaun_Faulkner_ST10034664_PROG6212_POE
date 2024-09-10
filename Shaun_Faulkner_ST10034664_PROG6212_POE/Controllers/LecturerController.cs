@@ -13,5 +13,10 @@ namespace Shaun_Faulkner_ST10034664_PROG6212_POE.Controllers
         {
             return View();
         }
+
+        public ActionResult SignUp()
+        {
+            return View();
+        }
     }
 }
