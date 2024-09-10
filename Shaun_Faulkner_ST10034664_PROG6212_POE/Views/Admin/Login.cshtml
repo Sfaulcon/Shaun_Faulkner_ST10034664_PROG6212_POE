@@ -6,21 +6,20 @@
 <html>
     <head>
         <title>Admin Login</title>
+        <link rel="stylesheet" href="~/css/admin.css" />
     </head>
-    <body>
-        <h1>Admin Login</h1>
-        <form>
-            <div>
-                <lable for="username">Username:</lable>
-                <input type="text" id="username" name="username" /><br />
-            </div>
-            <div>
-                <lable for="password">Password:</lable>
-                <input type="password" id="password" name="password" /><br />
-            </div>
-
-            
-        </form>
-        <button onclick="location.href='/Admin/ApproveDenyClaims'">Login</button>
-    </body>
+<body>
+    <h1 class="admin-title">Admin Login</h1>
+    <form class="admin-login-form">
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" class="form-control" /><br />
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" class="form-control" /><br />
+        </div>
+    </form>
+    <button class="btn-admin-login" onclick="location.href='/Admin/ApproveDenyClaims'">Login</button>
+</body>
 </html>

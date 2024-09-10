@@ -1,2 +1,125 @@
-﻿body {
+﻿/* admin.css */
+
+/* Styles for the admin login button */
+.btn-admin-login {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 }
+
+    .btn-admin-login:hover {
+        background-color: #218838;
+    }
+
+
+/* Styles for the admin login title */
+.admin-title {
+    font-size: 28px;
+    color: #333;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Styles for the admin login form */
+.admin-login-form {
+    margin: 20px auto;
+    width: 300px; /* Center the form */
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-control {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%;
+}
+
+/* Styles for the login button */
+.btn-admin-login {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    margin: 20px auto; /* Center the button */
+}
+
+    .btn-admin-login:hover {
+        background-color: #218838;
+    }
+
+/* Styles for the approve/deny title */
+.approve-deny-title {
+    font-size: 28px;
+    color: #333;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Styles for the claims table */
+.claims-table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+
+    .claims-table th,
+    .claims-table td {
+        padding: 10px;
+        border: 1px solid #ddd;
+        text-align: left;
+    }
+
+    .claims-table th {
+        background-color: #f4f4f4;
+    }
+
+    .claims-table tbody tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+/* Styles for the view document link */
+.view-document {
+    color: #007bff;
+    text-decoration: none;
+}
+
+    .view-document:hover {
+        text-decoration: underline;
+    }
+
+/* Styles for the approve/deny buttons */
+.btn-approve {
+    background-color: #28a745;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+    .btn-approve:hover {
+        background-color: #218838;
+    }
+
+.btn-deny {
+    background-color: #dc3545;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+    .btn-deny:hover {
+        background-color: #c82333;
+    }

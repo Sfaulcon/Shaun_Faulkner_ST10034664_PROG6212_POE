@@ -6,15 +6,15 @@
 <html>
     <head>
         <title>Lecturer Dashboard</title>
+        <link rel="stylesheet" href="~/css/lecturer.css" />
     </head>
-    <body>
-        <div>
-            <h1>Lecturer Dashboard</h1>
-        </div>
-        <div>
-            <h2>Active Claims</h2>
-
-        <table>
+<body>
+    <div class="dashboard-header">
+        <h1>Lecturer Dashboard</h1>
+    </div>
+    <div class="claims-section">
+        <h2>Active Claims</h2>
+        <table class="claims-table">
             <thead>
                 <tr>
                     <th>Lecturer Name</th>
@@ -30,15 +30,14 @@
                     <td>shaunf@gmail.com</td>
                     <td>12</td>
                     <td><a href="#">View Document</a></td>
-                    <td>Pending</td>
+                    <td class="status-pending">Pending</td>
                 </tr>
             </tbody>
         </table>
-        </div>
-        <div>
-            <h2>Past Claims</h2>
-
-        <table>
+    </div>
+    <div class="claims-section">
+        <h2>Past Claims</h2>
+        <table class="claims-table">
             <thead>
                 <tr>
                     <th>Lecturer Name</th>
@@ -54,12 +53,11 @@
                     <td>shaunf@gmail.com</td>
                     <td>12</td>
                     <td><a href="#">View Document</a></td>
-                    <td>Approved</td>
+                    <td class="status-approved">Approved</td>
                 </tr>
             </tbody>
         </table>
-        </div>
-
-        <button onclick="location.href='/Lecturer/SubmitClaim'">Submit New Claim</button>
-    </body>
+    </div>
+    <button class="btn-submit-claim" onclick="location.href='/Lecturer/SubmitClaim'">Submit New Claim</button>
+</body>
 </html>
