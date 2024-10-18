@@ -5,7 +5,6 @@ namespace Shaun_Faulkner_ST10034664_PROG6212_POE.Controllers
 {
     public class LecturerController : Controller
     {
-
         private readonly ApplicationDbContext _context;
 
         public LecturerController(ApplicationDbContext context)
@@ -25,21 +24,28 @@ namespace Shaun_Faulkner_ST10034664_PROG6212_POE.Controllers
             {
                 if (SupportingDocuments.Length > 2 * 1024 * 1024 ||
                     !(Path.GetExtension(SupportingDocuments.FileName).ToLower() == ".pdf" ||
-                    Path.GetExtension(SupportingDocuments.FileName).ToLower() == ".docx" ||
-                    Path.GetExtension(SupportingDocuments.FileName).ToLower() == ".xlsx"))
+                      Path.GetExtension(SupportingDocuments.FileName).ToLower() == ".docx" ||
+                      Path.GetExtension(SupportingDocuments.FileName).ToLower() == ".xlsx"))
                 {
-                    ModelState.AddModelError("File", "File Size or type is invalid");
+                    ModelState.AddModelError("File", "File size must be less than 2MB and must be a .pdf, .docx, or .xlsx file.");
                     return View(claim);
                 }
 
                 var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads", SupportingDocuments.FileName);
-                using (var stream = new FileStream(filePath, FileMode.Create))
+                try
                 {
-                    await SupportingDocuments.CopyToAsync(stream);
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await SupportingDocuments.CopyToAsync(stream);
+                    }
+                }
+                catch (IOException ex)
+                {
+                    ModelState.AddModelError("File", "There was an error uploading the file: " + ex.Message);
+                    return View(claim);
                 }
 
                 claim.SupportingDocumentsPath = "/uploads/" + SupportingDocuments.FileName;
-
                 claim.Status = "Pending";
                 claim.SubmissionDate = DateTime.Now;
 
@@ -49,32 +55,8 @@ namespace Shaun_Faulkner_ST10034664_PROG6212_POE.Controllers
                 return RedirectToAction("Dashboard");
             }
 
+            ModelState.AddModelError("File", "Please select a file to upload.");
             return View(claim);
-        }
-
-        public ActionResult Dashboard()
-        {
-            var lecturerClaims = _context.Claims.ToList();
-            return View(lecturerClaims);
-        }
-
-        [HttpGet]
-        public ActionResult SignUp()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult SignUp(Lecturer lecturer)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Lecturers.Add(lecturer);
-                _context.SaveChanges();
-                return RedirectToAction("Dashboard", "Lecturer");
-            }
-
-            return View(lecturer);
         }
     }
 }
