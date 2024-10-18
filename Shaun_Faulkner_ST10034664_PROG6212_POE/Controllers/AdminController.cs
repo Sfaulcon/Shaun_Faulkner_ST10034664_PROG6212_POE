@@ -1,60 +1,50 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Shaun_Faulkner_ST10034664_PROG6212_POE.Models;
 using System.ComponentModel.DataAnnotations;
 
 namespace Shaun_Faulkner_ST10034664_PROG6212_POE.Controllers
 {
     public class AdminController : Controller
     {
+        private readonly ApplicationDbContext _context;
 
-        private static List<Claim> _claims = new List<Claim>
+        public AdminController(ApplicationDbContext context)
         {
-            new Claim { Id = 1, LecturerName = "Shaun Faulkner", Email = "shaunf@gmail.com", HoursWorked = 12, HourlyRate = 15.00m, AdditionalNotes = "Extra notes", SupportingDocumentUrl = "#", Status = "Pending"}
-        };
-        public ActionResult Login()
-        {
-            return View();
+            _context = context;
         }
 
         public ActionResult ApproveDenyClaims()
         {
-            return View(new ClaimViewModel { Claims = _claims.Where(c => c.Status == "Pending").ToList() });
+            var pendingClaims = _context.Claims.Where(c => c.Status == "Pending").ToList();
+
+            return View(pendingClaims);
         }
 
         [HttpPost]
-        public IActionResult ApproveDenyClaim(int claimId, string action)
+        public ActionResult ApproveClaim(int claimId)
         {
-            var claim = _claims.FirstOrDefault(c => c.Id == claimId);
+            var claim = _context.Claims.FirstOrDefault(c => c.Id == claimId);
             if (claim != null)
             {
-                if (action == "approve")
-                {
-                    claim.Status = "Approved";
-                }
-                else if (action == "deny")
-                {
-                    claim.Status = "Denied";
-                }
+                claim.Status = "Approved";
+                _context.SaveChanges();
             }
 
             return RedirectToAction("ApproveDenyClaims");
         }
-    }
 
-    public class Claim
-    {
-        public int Id { get; set; }
-        public string LecturerName { get; set; }
-        public string Email { get; set; }
-        public int HoursWorked { get; set; }
-        public decimal HourlyRate { get; set; }
-        public string AdditionalNotes { get; set; }
-        public string SupportingDocumentUrl { get; set; }
-        public string Status { get; set; }
-    }
+        [HttpPost]
+        public ActionResult DenyClaim(int claimId)
+        {
+            var claim = _context.Claims.FirstOrDefault(c => c.Id == claimId);
+            if (claim != null)
+            {
+                claim.Status = "Denied";
+                _context.SaveChanges();
+            }
 
-    public class ClaimViewModel
-    {
-        public List<Claim> Claims { get; set;}
+            return RedirectToAction("ApproveDenyClaims");
+        }
     }
 
 }
