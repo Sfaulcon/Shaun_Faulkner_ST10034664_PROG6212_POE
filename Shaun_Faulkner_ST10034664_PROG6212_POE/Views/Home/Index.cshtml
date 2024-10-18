@@ -6,32 +6,19 @@
 <html>
 <head>
     <title>Welcome</title>
-    <link rel="stylesheet" href="~/css/lecturer.css" />
-    <link rel="stylesheet" href="~/css/admin.css" />
 </head>
 <body>
     <h1 class="page-title">Welcome to the Contract Monthly Claim System</h1>
-    <!-- Form to allow lecturer to log in -->
-    <form class="login-form">
-        <h3>Lecturer Login</h3>
-        <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" class="form-control" /><br />
-        </div>
-        <div class="form-group">
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" class="form-control" /><br />
-        </div>
-    </form>
 
-    <!-- button to login which will redirect to lecturer dashboard -->
-    <button class="btn-login" onclick="location.href='/Lecturer/Dashboard'">Login</button>
+    <div class="button-container">
+        <!-- Button to navigate to the Dashboard -->
+        <button class="btn-navigate" onclick="location.href='/Lecturer/Dashboard'">Dashboard</button>
 
-    <!-- Option for lecturer to sign up if new, will redirect to sign up page -->
-    <p class="signup-prompt">New here?</p>
-    <a href="/Lecturer/SignUp" class="signup-link">Sign Up Here</a>
+        <!-- Button to navigate to Submit Claim -->
+        <button class="btn-navigate" onclick="location.href='/Lecturer/SubmitClaim'">Submit Claim</button>
 
-    <!-- button for admin to login, will redirec to admin login page -->
-    <button class="btn-admin-login" onclick="location.href='/Admin/Login'">Admin Login</button>
+        <!-- Button to navigate to Approve/Deny Claims -->
+        <button class="btn-navigate" onclick="location.href='/Admin/ApproveDenyClaims'">Approve/Deny Claims</button>
+    </div>
 </body>
 </html>

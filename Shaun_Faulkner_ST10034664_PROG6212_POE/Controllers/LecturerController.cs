@@ -58,5 +58,11 @@ namespace Shaun_Faulkner_ST10034664_PROG6212_POE.Controllers
             ModelState.AddModelError("File", "Please select a file to upload.");
             return View(claim);
         }
+
+        public IActionResult Dashboard()
+        {
+            var claims = _context.Claims.ToList();
+            return View(claims);
+        }
     }
 }

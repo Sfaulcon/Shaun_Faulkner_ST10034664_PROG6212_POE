@@ -11,7 +11,5 @@
         public string SupportingDocumentsPath { get; set; }
         public DateTime SubmissionDate { get; set; }
         public string Status { get; set; }
-
-        public Lecturer Lecturer { get; set; }
     }
 }

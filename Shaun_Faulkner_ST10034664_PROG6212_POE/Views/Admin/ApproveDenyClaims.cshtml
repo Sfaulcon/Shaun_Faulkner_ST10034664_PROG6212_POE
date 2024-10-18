@@ -1,58 +1,62 @@
-﻿@{
+﻿@model List<Shaun_Faulkner_ST10034664_PROG6212_POE.Models.Claim>
+
+@{
     ViewData["Title"] = "Approve Deny Claims";
 }
 
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Approve / Deny Claims</title>
-        <link rel="stylesheet" href="~/css/admin.css" />
-    </head>
-    <body>
-        <h1 class="page-title">Approve / Deny Claims</h1>
+<head>
+    <title>Approve / Deny Claims</title>
+    <link rel="stylesheet" href="~/css/admin.css" />
+</head>
+<body>
+    <h1 class="page-title">Approve / Deny Claims</h1>
 
-        <table class="claims-table">
-            <thead>
-                <tr>
-                    <th>Claim ID</th>
-                    <th>Hours Worked</th>
-                    <th>Hourly Rate</th>
-                    <th>Additional Notes</th>
-                    <th>Status</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @if (Model.Any())
-                {
-                    foreach (var claim in Model)
-                    {
-                        <tr>
-                            <td>@claim.Id</td>
-                            <td>@claim.HoursWorked</td>
-                            <td>@claim.HourlyRate</td>
-                            <td>@claim.AdditionalNotes</td>
-                            <td>@claim.Status</td>
-                            <td>
-                                <form method="post" asp-action="ApproveClaim">
-                                    <input type="hidden" name="claimId" value="@claim.Id" />
-                                    <button type="submit">Approve</button>
-                                </form>
-                                <form method="post" asp-action="DenyClaim">
-                                    <input type="hidden" name="claimId" value="@claim.Id" />
-                                    <button type="submit">Deny</button>
-                                </form>
-                            </td>
-                        </tr>
-                    }
-                }
-                else
+    <table class="claims-table">
+        <thead>
+            <tr>
+                <th>Claim ID</th>
+                <th>Hours Worked</th>
+                <th>Hourly Rate</th>
+                <th>Additional Notes</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any()) // Check if model is not null and has claims
+            {
+                foreach (var claim in Model)
                 {
                     <tr>
-                        <td colspan="6">No claims to approve or deny.</td>
+                        <td>@claim.Id</td>
+                        <td>@claim.HoursWorked</td>
+                        <td>@claim.HourlyRate</td>
+                        <td>@claim.AdditionalNotes</td>
+                        <td>@claim.Status</td>
+                        <td>
+                            <form method="post" asp-action="ApproveClaim">
+                                <input type="hidden" name="claimId" value="@claim.Id" />
+                                <button type="submit" class="btn-approve">Approve</button>
+                            </form>
+                            <form method="post" asp-action="DenyClaim">
+                                <input type="hidden" name="claimId" value="@claim.Id" />
+                                <button type="submit" class="btn-deny">Deny</button>
+                            </form>
+                        </td>
                     </tr>
                 }
-            </tbody>
-        </table>
-    </body>
+            }
+            else
+            {
+                <tr>
+                    <td colspan="6">No claims to approve or deny.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <p><a href="/Lecturer/Dashboard" class="back-to-dashboard">Back to Dashboard</a></p>
+</body>
 </html>
