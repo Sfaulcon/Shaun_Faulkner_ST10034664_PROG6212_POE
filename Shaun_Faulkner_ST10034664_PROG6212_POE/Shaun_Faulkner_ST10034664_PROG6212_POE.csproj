@@ -11,4 +11,9 @@
     <PackageReference Include="Azure.Storage.Blobs" Version="12.22.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\" />
+    <Folder Include="wwwroot\uploads\" />
+  </ItemGroup>
+
 </Project>
