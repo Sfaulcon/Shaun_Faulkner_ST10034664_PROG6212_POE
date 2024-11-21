@@ -1,4 +1,4 @@
-﻿@model List<Shaun_Faulkner_ST10034664_PROG6212_POE.Models.Claim>
+﻿
 
 @{
     ViewData["Title"] = "Approve Deny Claims";
@@ -25,35 +25,27 @@
             </tr>
         </thead>
         <tbody>
-            @if (Model != null && Model.Any()) // Check if model is not null and has claims
-            {
-                foreach (var claim in Model)
-                {
                     <tr>
-                        <td>@claim.Id</td>
-                        <td>@claim.HoursWorked</td>
-                        <td>@claim.HourlyRate</td>
-                        <td>@claim.AdditionalNotes</td>
-                        <td>@claim.Status</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                         <td>
                             <form method="post" asp-action="ApproveClaim">
-                                <input type="hidden" name="claimId" value="@claim.Id" />
+                                <input type="hidden" name="claimId" value="" />
                                 <button type="submit" class="btn-approve">Approve</button>
                             </form>
                             <form method="post" asp-action="DenyClaim">
-                                <input type="hidden" name="claimId" value="@claim.Id" />
+                                <input type="hidden" name="claimId" value="" />
                                 <button type="submit" class="btn-deny">Deny</button>
                             </form>
                         </td>
                     </tr>
-                }
-            }
-            else
-            {
+
                 <tr>
                     <td colspan="6">No claims to approve or deny.</td>
                 </tr>
-            }
         </tbody>
     </table>
 

@@ -1,11 +1,16 @@
 using Microsoft.EntityFrameworkCore;
+using Shaun_Faulkner_ST10034664_PROG6212_POE;
+using Shaun_Faulkner_ST10034664_PROG6212_POE.Data;
 using Shaun_Faulkner_ST10034664_PROG6212_POE.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Connection
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 
 var app = builder.Build();
 

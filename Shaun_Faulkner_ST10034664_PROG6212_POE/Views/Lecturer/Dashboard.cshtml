@@ -14,7 +14,7 @@
 <body>
     <h1 class="dashboard-title">Claims Dashboard</h1>
 
-    @if (Model.Any())
+
     {
         <table class="claims-table">
             <thead>
@@ -28,24 +28,20 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var claim in Model)
-                {
+
                     <tr>
-                        <td>@claim.LecturerName</td>
-                        <td>@claim.Email</td>
-                        <td>@claim.HoursWorked</td>
-                        <td>@claim.HourlyRate</td>
-                        <td>@claim.SubmissionDate.ToShortDateString()</td>
-                        <td>@claim.Status</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                     </tr>
-                }
             </tbody>
         </table>
-    }
-    else
-    {
+
         <p>No claims submitted yet.</p>
-    }
+
 
     <p class="back-to-home"><a href="/Home/Index">Back to Home</a></p>
 </body>

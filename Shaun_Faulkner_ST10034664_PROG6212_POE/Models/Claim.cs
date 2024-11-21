@@ -1,14 +1,20 @@
-﻿namespace Shaun_Faulkner_ST10034664_PROG6212_POE.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Shaun_Faulkner_ST10034664_PROG6212_POE.Models
 {
     public class Claim
     {
-        public int Id { get; set; }
+        public int ClaimId { get; set; }
+        public int LecturerId { get; set; }
+
+        [ForeignKey("LecturerId")]
+        public Lecturer Lecturer { get; set; }
         public string LecturerName { get; set; }
-        public string Email { get; set; }
+        public string LecturerEmail { get; set; }
         public double HoursWorked { get; set; }
         public double HourlyRate { get; set; }
         public string AdditionalNotes { get; set; }
-        public string SupportingDocumentsPath { get; set; }
+        public byte[]? SupportingDocumentsPath { get; set; }
         public DateTime SubmissionDate { get; set; }
         public string Status { get; set; }
     }
