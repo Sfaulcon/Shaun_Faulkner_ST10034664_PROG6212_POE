@@ -9,13 +9,11 @@
 <html>
 <head>
     <title>Claims Dashboard</title>
-    <link rel="stylesheet" href="~/css/lecturer.css" />
 </head>
 <body>
     <h1 class="dashboard-title">Claims Dashboard</h1>
 
 
-    {
         <table class="claims-table">
             <thead>
                 <tr>
@@ -41,6 +39,9 @@
         </table>
 
         <p>No claims submitted yet.</p>
+
+    <p>You are logged in</p>
+    <a asp-controller="Lecturer" asp-action="Logout">Logout</a>
 
 
     <p class="back-to-home"><a href="/Home/Index">Back to Home</a></p>
