@@ -8,13 +8,9 @@
 
   <ItemGroup>
     <Compile Remove="Services\**" />
-    <Compile Remove="wwwroot\uploads\**" />
     <Content Remove="Services\**" />
-    <Content Remove="wwwroot\uploads\**" />
     <EmbeddedResource Remove="Services\**" />
-    <EmbeddedResource Remove="wwwroot\uploads\**" />
     <None Remove="Services\**" />
-    <None Remove="wwwroot\uploads\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,6 +24,7 @@
 
   <ItemGroup>
     <Folder Include="Migrations\" />
+    <Folder Include="wwwroot\uploads\" />
   </ItemGroup>
 
 </Project>

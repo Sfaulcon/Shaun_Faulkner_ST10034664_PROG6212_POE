@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Submit Claim";
+}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Submit New Claim</title>
+    </head>
+<body>
+    <h1 class="submit-claim-title">Submit New Claim</h1>
+
+    <form asp-action="SubmitClaim" method="post">
+        <div>
+            <label for="hoursWorked">Hours Worked:</label>
+            <input type="number" name="hoursWorked" />
+        </div>
+        <div>
+            <label for="hourlyRate">Hourly Rate:</label>
+            <input type="number" name="hourlyRate" />
+        </div>
+        <div>
+            <label for="additionalNotes">Additional Notes:</label>
+            <textarea name="additionalNotes"></textarea>
+        </div>
+        <div>
+            <label for="SupportingDocuments">Supporting Documents:</label>
+            <input type="file" name="SupportingDocuments" />
+        </div>
+        <button type="submit">Submit Claim</button>
+    </form>
+
+    <p class="back-to-dashboard"><a href="/Lecturer/Dashboard">Back to Dashboard</a></p>
+</body>
+</html>

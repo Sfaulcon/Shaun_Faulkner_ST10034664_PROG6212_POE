@@ -12,7 +12,7 @@ using Shaun_Faulkner_ST10034664_PROG6212_POE.Data;
 namespace Shaun_Faulkner_ST10034664_PROG6212_POE.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241121121617_InitialCreate")]
+    [Migration("20241121142043_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -89,9 +89,6 @@ namespace Shaun_Faulkner_ST10034664_PROG6212_POE.Migrations
 
                     b.Property<DateTime>("SubmissionDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<byte[]>("SupportingDocumentsPath")
-                        .HasColumnType("varbinary(max)");
 
                     b.HasKey("ClaimId");
 

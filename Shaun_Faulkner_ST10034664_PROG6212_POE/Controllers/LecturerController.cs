@@ -59,6 +59,7 @@ namespace Shaun_Faulkner_ST10034664_PROG6212_POE.Controllers
 
             HttpContext.Session.SetString("LecturerId", lecturer.LecturerId.ToString());
             HttpContext.Session.SetString("LecturerName", lecturer.Name);
+            HttpContext.Session.SetString("LecturerEmail", lecturer.Email);
 
             return RedirectToAction("Dashboard");
         }
@@ -70,7 +71,10 @@ namespace Shaun_Faulkner_ST10034664_PROG6212_POE.Controllers
                 return RedirectToAction("LecturerLogin");
             }
 
-            return View();
+            var lecturerId = int.Parse(HttpContext.Session.GetString("LecturerId"));
+            var claims = _context.Claims.Where(c => c.LecturerId == lecturerId).ToList();
+
+            return View(claims);
         }
 
         public IActionResult Logout()

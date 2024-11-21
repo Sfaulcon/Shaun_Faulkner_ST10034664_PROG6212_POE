@@ -11,14 +11,15 @@
     <title>Claims Dashboard</title>
 </head>
 <body>
-    <h1 class="dashboard-title">Claims Dashboard</h1>
+    <h1>Welcome, @Context.Session.GetString("LecturerName")!</h1>
+
+    <h2 class="dashboard-title">My Claims</h2>
 
 
         <table class="claims-table">
             <thead>
                 <tr>
-                    <th>Lecturer Name</th>
-                    <th>Email</th>
+                    <th>Claim ID</th>
                     <th>Hours Worked</th>
                     <th>Hourly Rate</th>
                     <th>Submission Date</th>
@@ -26,19 +27,21 @@
                 </tr>
             </thead>
             <tbody>
-
+                @foreach (var claim in Model)
+                {
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>@claim.ClaimId</td>
+                        <td>@claim.HoursWorked</td>
+                        <td>@claim.HourlyRate</td>
+                        <td>@claim.SubmissionDate</td>
+                        <td>@claim.Status</td>
                         <td></td>
                     </tr>
+                }
             </tbody>
         </table>
 
-        <p>No claims submitted yet.</p>
+        <a asp-controller="Claim" asp-action="SubmitClaim">Submit New Claim</a>
 
     <p>You are logged in</p>
     <a asp-controller="Lecturer" asp-action="Logout">Logout</a>

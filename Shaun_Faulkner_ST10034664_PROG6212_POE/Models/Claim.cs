@@ -14,7 +14,7 @@ namespace Shaun_Faulkner_ST10034664_PROG6212_POE.Models
         public double HoursWorked { get; set; }
         public double HourlyRate { get; set; }
         public string AdditionalNotes { get; set; }
-        public byte[]? SupportingDocumentsPath { get; set; }
+        public string SupportingDocuments { get; set; }
         public DateTime SubmissionDate { get; set; }
         public string Status { get; set; }
     }

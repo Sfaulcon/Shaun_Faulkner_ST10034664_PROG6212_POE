@@ -55,7 +55,6 @@ namespace Shaun_Faulkner_ST10034664_PROG6212_POE.Migrations
                     HoursWorked = table.Column<double>(type: "float", nullable: false),
                     HourlyRate = table.Column<double>(type: "float", nullable: false),
                     AdditionalNotes = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SupportingDocumentsPath = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     SubmissionDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
