@@ -52,6 +52,11 @@ namespace Shaun_Faulkner_ST10034664_PROG6212_POE.Controllers
             claim.HourlyRate = claim.HourlyRate;
             claim.AdditionalNotes = claim.AdditionalNotes;
 
+            if (claim.HoursWorked > 0 && claim.HourlyRate > 0)
+            {
+                claim.TotalAmount = (decimal)(claim.HoursWorked * claim.HourlyRate);
+            }
+
             if (SupportingDocument != null && SupportingDocument.Length > 0)
             {
                 var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");

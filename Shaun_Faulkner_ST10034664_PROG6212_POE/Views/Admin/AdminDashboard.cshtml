@@ -1,5 +1,54 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿
+
 @{
+    ViewData["Title"] = "Admin Dashboard";
 }
+
+<h2>@ViewData["Title"]</h2>
+
+<h3>Pending Claims</h3>
+
+<table>
+    <thead>
+        <tr>
+            <th>Lecturer Name</th>
+            <th>Lecturer Email</th>
+            <th>Hours Worked</th>
+            <th>Hourly Rate</th>
+            <th>Additional Notes</th>
+            <th>Supporting Documents</th>
+            <th>Total Amount Payable</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var claim in Model)
+        {
+            <tr>
+                <td>@claim.LecturerName</td>
+                <td>@claim.LecturerEmail</td>
+                <td>@claim.HoursWorked</td>
+                <td>R @claim.HourlyRate</td>
+                <td>@claim.AdditionalNotes</td>
+                <td>@claim.SupportingDocuments</td>
+                <td>R @claim.TotalAmount</td>
+                <td>
+                    <form method="post" action="@Url.Action("ApproveDenyClaims", "Admin")">
+                        <input type="hidden" name="claimId" value="@claim.ClaimId" />
+                        <input type="hidden" name="status" value="Approved" />
+                        <button type="submit">Approve</button>
+                    </form>
+                    |
+                    <form method="post" action="@Url.Action("ApproveDenyClaims", "Admin")">
+                        <input type="hidden" name="claimId" value="@claim.ClaimId" />
+                        <input type="hidden" name="status" value="Denied" />
+                        <button type="submit">Deny</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<p>You are logged in</p>
+<a asp-controller="Admin" asp-action="Logout">Logout</a>
