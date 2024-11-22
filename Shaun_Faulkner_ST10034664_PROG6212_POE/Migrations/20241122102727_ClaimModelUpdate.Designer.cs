@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Shaun_Faulkner_ST10034664_PROG6212_POE.Data;
 
@@ -11,9 +12,11 @@ using Shaun_Faulkner_ST10034664_PROG6212_POE.Data;
 namespace Shaun_Faulkner_ST10034664_PROG6212_POE.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241122102727_ClaimModelUpdate")]
+    partial class ClaimModelUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -88,9 +91,6 @@ namespace Shaun_Faulkner_ST10034664_PROG6212_POE.Migrations
 
                     b.Property<string>("SupportingDocuments")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("TotalAmount")
-                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("ClaimId");
 

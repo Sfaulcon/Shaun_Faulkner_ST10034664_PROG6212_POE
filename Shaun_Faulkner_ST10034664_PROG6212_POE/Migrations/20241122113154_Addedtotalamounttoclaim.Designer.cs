@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Shaun_Faulkner_ST10034664_PROG6212_POE.Data;
 
@@ -11,9 +12,11 @@ using Shaun_Faulkner_ST10034664_PROG6212_POE.Data;
 namespace Shaun_Faulkner_ST10034664_PROG6212_POE.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241122113154_Addedtotalamounttoclaim")]
+    partial class Addedtotalamounttoclaim
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

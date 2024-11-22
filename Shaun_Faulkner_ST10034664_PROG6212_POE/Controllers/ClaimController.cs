@@ -20,35 +20,62 @@ namespace Shaun_Faulkner_ST10034664_PROG6212_POE.Controllers
         }
 
         [HttpPost]
-        public IActionResult SubmitClaim(Claim claim, IFormFile supportingDocument)
+        public IActionResult SubmitClaim(Claim claim, IFormFile SupportingDocument)
         {
-            if (ModelState.IsValid)
+
+            if (!ModelState.IsValid)
             {
-                if (supportingDocument != null && supportingDocument.Length > 0)
+                var errors = ModelState.Values.SelectMany(v => v.Errors);
+                foreach (var error in errors)
                 {
-                    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads", supportingDocument.FileName);
-
-                    using (var stream = new FileStream(filePath, FileMode.Create))
-                    {
-                        supportingDocument.CopyTo(stream);
-                    }
-
-                    claim.SupportingDocuments = "/uploads/" + supportingDocument.FileName;
+                    Console.WriteLine(error.ErrorMessage);
                 }
-
-                claim.LecturerId = int.Parse(HttpContext.Session.GetString("LecturerId"));
-                claim.LecturerName = HttpContext.Session.GetString("LecturerName");
-                claim.LecturerEmail = HttpContext.Session.GetString("LecturerEmail");
-                claim.Status = "Pending";
-                claim.SubmissionDate = DateTime.Now;
-
-                _context.Claims.Add(claim);
-                _context.SaveChanges();
-
-                return RedirectToAction("Dashboard", "Lecturer");
             }
 
-            return View(claim);
+            var lecturerIdVal = HttpContext.Session.GetString("LecturerId");
+            var lecturerName = HttpContext.Session.GetString("LecturerName");
+            var lecturerEmail = HttpContext.Session.GetString("LecturerEmail");
+
+            if (string.IsNullOrEmpty(lecturerIdVal) || string.IsNullOrEmpty(lecturerName) || string.IsNullOrEmpty(lecturerEmail))
+            {
+                ModelState.AddModelError("", "Lecturer information is missing from the session.");
+                return View(claim);
+            }
+
+            claim.LecturerId = int.Parse(lecturerIdVal);
+            claim.LecturerName = lecturerName;
+            claim.LecturerEmail = lecturerEmail;
+
+            claim.Status = "Pending";
+            claim.SubmissionDate = DateTime.Now;
+            claim.HoursWorked = claim.HoursWorked;
+            claim.HourlyRate = claim.HourlyRate;
+            claim.AdditionalNotes = claim.AdditionalNotes;
+
+            if (SupportingDocument != null && SupportingDocument.Length > 0)
+            {
+                var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
+                Directory.CreateDirectory(uploadsFolder);
+                var uniqueFileName = Guid.NewGuid().ToString() + "_" + SupportingDocument.FileName;
+                var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    SupportingDocument.CopyTo(fileStream);
+                }
+
+                claim.SupportingDocuments = "/uploads/" + uniqueFileName;
+            }
+            else
+            {
+                claim.SupportingDocuments = null;
+            }
+
+            _context.Claims.Add(claim);
+            _context.SaveChanges();
+
+            return RedirectToAction("Dashboard", "Lecturer");
+
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿@{
+﻿@model Shaun_Faulkner_ST10034664_PROG6212_POE.Models.Claim
+
+@{
     ViewData["Title"] = "Submit Claim";
 }
 
@@ -10,22 +12,22 @@
 <body>
     <h1 class="submit-claim-title">Submit New Claim</h1>
 
-    <form asp-action="SubmitClaim" method="post">
+    <form asp-action="SubmitClaim" method="post" enctype="multipart/form-data">
         <div>
             <label for="hoursWorked">Hours Worked:</label>
-            <input type="number" name="hoursWorked" />
+            <input asp-for="HoursWorked" type="number" id="hoursWorked" name="HoursWorked" />
         </div>
         <div>
             <label for="hourlyRate">Hourly Rate:</label>
-            <input type="number" name="hourlyRate" />
+            <input asp-for="HourlyRate" type="number" id="hourlyRate" name="HourlyRate" />
         </div>
         <div>
             <label for="additionalNotes">Additional Notes:</label>
-            <textarea name="additionalNotes"></textarea>
+            <textarea asp-for="AdditionalNotes" id="additionalNotes" name="AdditionalNotes"></textarea>
         </div>
         <div>
-            <label for="SupportingDocuments">Supporting Documents:</label>
-            <input type="file" name="SupportingDocuments" />
+            <label for="supportingDocuments">Supporting Documents:</label>
+            <input asp-for="SupportingDocuments" type="file" id="supportingDocuments" name="SupportingDocuments" />
         </div>
         <button type="submit">Submit Claim</button>
     </form>
