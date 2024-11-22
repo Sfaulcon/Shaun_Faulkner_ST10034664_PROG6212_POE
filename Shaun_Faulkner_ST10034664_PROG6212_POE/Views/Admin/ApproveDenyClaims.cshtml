@@ -1,54 +1,127 @@
-﻿
-
-@{
+﻿@{
     ViewData["Title"] = "Approve Deny Claims";
 }
-
-<!DOCTYPE html>
-<html>
 <head>
-    <title>Approve / Deny Claims</title>
-    <link rel="stylesheet" href="~/css/admin.css" />
+    <style>
+        .page-title {
+            font-size: 24px;
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Claims table styling */
+        .claims-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 16px;
+            text-align: left;
+        }
+
+            .claims-table th,
+            .claims-table td {
+                padding: 12px;
+                border: 1px solid #ddd;
+            }
+
+            .claims-table th {
+                background-color: #f4f4f4;
+                font-weight: bold;
+            }
+
+            .claims-table tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+
+            .claims-table tr:hover {
+                background-color: #f1f1f1;
+            }
+
+        .empty-row {
+            text-align: center;
+            font-style: italic;
+            color: #888;
+        }
+
+        /* Button styles */
+        .btn-approve,
+        .btn-deny {
+            padding: 8px 12px;
+            font-size: 14px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn-approve {
+            background-color: #28a745;
+            color: #fff;
+        }
+
+            .btn-approve:hover {
+                background-color: #218838;
+            }
+
+        .btn-deny {
+            background-color: #dc3545;
+            color: #fff;
+        }
+
+            .btn-deny:hover {
+                background-color: #c82333;
+            }
+
+        /* Back to dashboard link */
+        .back-to-dashboard {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #007bff;
+            font-size: 16px;
+        }
+
+            .back-to-dashboard:hover {
+                text-decoration: underline;
+                color: #0056b3;
+            }
+    </style>
 </head>
-<body>
-    <h1 class="page-title">Approve / Deny Claims</h1>
+<h1 class="page-title">Approve / Deny Claims</h1>
 
-    <table class="claims-table">
-        <thead>
-            <tr>
-                <th>Claim ID</th>
-                <th>Hours Worked</th>
-                <th>Hourly Rate</th>
-                <th>Additional Notes</th>
-                <th>Status</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <form method="post" asp-action="ApproveClaim">
-                                <input type="hidden" name="claimId" value="" />
-                                <button type="submit" class="btn-approve">Approve</button>
-                            </form>
-                            <form method="post" asp-action="DenyClaim">
-                                <input type="hidden" name="claimId" value="" />
-                                <button type="submit" class="btn-deny">Deny</button>
-                            </form>
-                        </td>
-                    </tr>
+<table class="claims-table">
+    <thead>
+        <tr>
+            <th>Claim ID</th>
+            <th>Hours Worked</th>
+            <th>Hourly Rate</th>
+            <th>Additional Notes</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>10</td>
+            <td>R 50</td>
+            <td>Worked overtime</td>
+            <td>Pending</td>
+            <td>
+                <form method="post" asp-action="ApproveClaim" class="action-form">
+                    <input type="hidden" name="claimId" value="1" />
+                    <button type="submit" class="btn-approve">Approve</button>
+                </form>
+                <form method="post" asp-action="DenyClaim" class="action-form">
+                    <input type="hidden" name="claimId" value="1" />
+                    <button type="submit" class="btn-deny">Deny</button>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="6" class="empty-row">No claims to approve or deny.</td>
+        </tr>
+    </tbody>
+</table>
 
-                <tr>
-                    <td colspan="6">No claims to approve or deny.</td>
-                </tr>
-        </tbody>
-    </table>
-
-    <p><a href="/Lecturer/Dashboard" class="back-to-dashboard">Back to Dashboard</a></p>
-</body>
-</html>
+<p><a href="/Lecturer/Dashboard" class="back-to-dashboard">Back to Dashboard</a></p>

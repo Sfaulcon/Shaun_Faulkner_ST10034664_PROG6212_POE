@@ -11,105 +11,98 @@
     <title>Claims Dashboard</title>
     <style>
         .container {
-    width: 80%;
-    margin: 0 auto;
-    padding: 20px;
-    font-family: 'Arial', sans-serif;
-}
+            margin: 20px auto;
+            padding: 20px;
+            max-width: 900px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
 
-h1 {
-    text-align: center;
-    font-size: 24px;
-    color: #333;
-}
+        .welcome-message {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
 
-.dashboard-title {
-    text-align: center;
-    font-size: 20px;
-    color: #2c3e50;
-    margin-bottom: 20px;
-}
+        .dashboard-title, .section-title {
+            color: #0056b3;
+            margin-bottom: 15px;
+        }
 
-h3 {
-    color: #34495e;
-    margin-bottom: 10px;
-}
+        .claims-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
 
-/* Table Styling */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 30px;
-    background-color: #ffffff;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
+            .claims-table th, .claims-table td {
+                border: 1px solid #ddd;
+                padding: 10px;
+                text-align: left;
+            }
 
-th, td {
-    padding: 12px 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
+            .claims-table th {
+                background-color: #f1f1f1;
+            }
 
-th {
-    background-color: #34495e;
-    color: white;
-}
+        .no-claims-message {
+            font-style: italic;
+            color: #999;
+        }
 
-td {
-    color: #2c3e50;
-}
+        .action-links .btn-primary,
+        .action-links .btn-secondary,
+        .btn-logout,
+        .btn-back {
+            display: inline-block;
+            margin: 10px 0;
+            padding: 10px 15px;
+            border: none;
+            color: #fff;
+            border-radius: 5px;
+            text-decoration: none;
+        }
 
-/* No Claims Message */
-.no-claims-message {
-    color: #e74c3c;
-    text-align: center;
-    font-size: 16px;
-}
+        .btn-primary {
+            background-color: #007bff;
+        }
 
-/* Links and Buttons */
-a {
-    color: #2980b9;
-    text-decoration: none;
-    font-size: 16px;
-}
+        .btn-secondary {
+            background-color: #28a745;
+        }
 
-a:hover {
-    text-decoration: underline;
-}
+        .btn-logout, .btn-back {
+            background-color: #dc3545;
+        }
 
-.logout-link {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 14px;
-}
+            .btn-primary:hover,
+            .btn-secondary:hover,
+            .btn-logout:hover,
+            .btn-back:hover {
+                opacity: 0.9;
+            }
 
-.back-to-home {
-    text-align: center;
-    margin-top: 20px;
-}
+        .btn-download {
+            color: #0056b3;
+            text-decoration: underline;
+        }
 
-.submit-new-claim {
-    text-align: center;
-    margin-top: 20px;
-}
-
-/* Hover Effects for Tables */
-tr:hover {
-    background-color: #ecf0f1;
-}
-
+            .btn-download:hover {
+                color: #003d80;
+            }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Welcome, @Context.Session.GetString("LecturerName")!</h1>
+        <h1 class="welcome-message">Welcome, @Context.Session.GetString("LecturerName")!</h1>
 
         <h2 class="dashboard-title">My Claims</h2>
 
-        <h3>Pending Claims</h3>
+        <h3 class="section-title">Pending Claims</h3>
         @if (Model.PendingClaims.Any())
         {
-            <table>
+            <table class="claims-table">
                 <thead>
                     <tr>
                         <th>Claim ID</th>
@@ -140,10 +133,10 @@ tr:hover {
             <p class="no-claims-message">No Pending Claims Available</p>
         }
 
-        <h3>Approved Claims</h3>
+        <h3 class="section-title">Approved Claims</h3>
         @if (Model.ApprovedClaims.Any())
         {
-            <table>
+            <table class="claims-table">
                 <thead>
                     <tr>
                         <th>Claim ID</th>
@@ -166,7 +159,7 @@ tr:hover {
                             <td>@claim.Status</td>
                             <td>R @claim.TotalAmount</td>
                             <td>
-                                        <a href="@Url.Content("~" + claim.InvoicePath)" download>Download Invoice</a>
+                                <a href="@Url.Content("~" + claim.InvoicePath)" class="btn-download" download>Download Invoice</a>
                             </td>
                         </tr>
                     }
@@ -178,10 +171,10 @@ tr:hover {
             <p class="no-claims-message">No Approved Claims Available</p>
         }
 
-        <h3>Denied Claims</h3>
+        <h3 class="section-title">Denied Claims</h3>
         @if (Model.DeniedClaims.Any())
         {
-            <table>
+            <table class="claims-table">
                 <thead>
                     <tr>
                         <th>Claim ID</th>
@@ -212,15 +205,19 @@ tr:hover {
             <p class="no-claims-message">No Denied Claims Available</p>
         }
 
-        <a asp-controller="Claim" asp-action="SubmitClaim">Submit New Claim</a>
-
-        <p class="manage-profile">
-            <a asp-controller="Lecturer" asp-action="ManageProfile">Manage Profile</a>
+        <p class="action-links">
+            <a asp-controller="Claim" asp-action="SubmitClaim" class="btn-primary">Submit New Claim</a>
+            <a asp-controller="Lecturer" asp-action="ManageProfile" class="btn-secondary">Manage Profile</a>
         </p>
 
-        <p class="logout-link">You are logged in | <a asp-controller="Lecturer" asp-action="Logout">Logout</a></p>
+        <p class="logout-link">
+            You are logged in |
+            <a asp-controller="Lecturer" asp-action="Logout" class="btn-logout">Logout</a>
+        </p>
 
-        <p class="back-to-home"><a href="/Home/Index">Back to Home</a></p>
+        <p class="back-to-home">
+            <a href="/Home/Index" class="btn-back">Back to Home</a>
+        </p>
     </div>
 </body>
 </html>

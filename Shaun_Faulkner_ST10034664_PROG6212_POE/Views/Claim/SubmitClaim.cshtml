@@ -4,34 +4,112 @@
     ViewData["Title"] = "Submit Claim";
 }
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Submit New Claim</title>
-    </head>
-<body>
-    <h1 class="submit-claim-title">Submit New Claim</h1>
+<head>
+    <style>
+        .submit-claim-title {
+            font-size: 24px;
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
-    <form asp-action="SubmitClaim" method="post" enctype="multipart/form-data">
-        <div>
-            <label for="hoursWorked">Hours Worked:</label>
-            <input asp-for="HoursWorked" type="number" id="hoursWorked" name="HoursWorked" />
-        </div>
-        <div>
-            <label for="hourlyRate">Hourly Rate:</label>
-            <input asp-for="HourlyRate" type="number" id="hourlyRate" name="HourlyRate" />
-        </div>
-        <div>
-            <label for="additionalNotes">Additional Notes:</label>
-            <textarea asp-for="AdditionalNotes" id="additionalNotes" name="AdditionalNotes"></textarea>
-        </div>
-        <div>
-            <label for="supportingDocuments">Supporting Documents:</label>
-            <input asp-for="SupportingDocuments" type="file" id="supportingDocuments" name="SupportingDocuments" />
-        </div>
-        <button type="submit">Submit Claim</button>
-    </form>
+        /* Form styles */
+        .claim-form {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
 
-    <p class="back-to-dashboard"><a href="/Lecturer/Dashboard">Back to Dashboard</a></p>
-</body>
-</html>
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+            .form-group label {
+                display: block;
+                margin-bottom: 5px;
+                font-weight: bold;
+                color: #555;
+            }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .form-control-file {
+            font-size: 14px;
+        }
+
+        textarea.form-control {
+            height: 100px;
+            resize: vertical;
+        }
+
+        /* Submit button styles */
+        .btn-submit {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+            .btn-submit:hover {
+                background-color: #0056b3;
+            }
+
+        /* Back to dashboard link */
+        .back-to-dashboard {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+            .back-to-dashboard a {
+                text-decoration: none;
+                color: #007bff;
+                font-size: 16px;
+            }
+
+                .back-to-dashboard a:hover {
+                    text-decoration: underline;
+                    color: #0056b3;
+                }
+    </style>
+</head>
+<h1 class="submit-claim-title">Submit New Claim</h1>
+
+<form asp-action="SubmitClaim" method="post" enctype="multipart/form-data" class="claim-form">
+    <div class="form-group">
+        <label for="hoursWorked">Hours Worked:</label>
+        <input asp-for="HoursWorked" type="number" id="hoursWorked" name="HoursWorked" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="hourlyRate">Hourly Rate:</label>
+        <input asp-for="HourlyRate" type="number" id="hourlyRate" name="HourlyRate" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="additionalNotes">Additional Notes:</label>
+        <textarea asp-for="AdditionalNotes" id="additionalNotes" name="AdditionalNotes" class="form-control"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="supportingDocuments">Supporting Documents:</label>
+        <input asp-for="SupportingDocuments" type="file" id="supportingDocuments" name="SupportingDocuments" class="form-control-file" />
+    </div>
+    <button type="submit" class="btn-submit">Submit Claim</button>
+</form>
+
+<p class="back-to-dashboard">
+    <a href="/Lecturer/Dashboard">Back to Dashboard</a>
+</p>

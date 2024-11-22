@@ -6,25 +6,69 @@
 <html>
 <head>
     <title>Welcome</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        /* Page Title Styling */
+        .page-title {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #4CAF50;
+            text-align: center;
+        }
+
+        /* Button Container Styling */
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* Button Styling */
+        .btn-navigate {
+            background-color: #4CAF50; /* Green */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+            .btn-navigate:hover {
+                background-color: #45a049; /* Darker Green */
+            }
+
+            .btn-navigate:active {
+                background-color: #3e8e41;
+                transform: scale(0.98);
+            }
+    </style>
 </head>
 <body>
     <h1 class="page-title">Welcome to the Contract Monthly Claim System</h1>
 
     <div class="button-container">
-        <!-- Button to navigate to the Lecturer Login -->
         <button class="btn-navigate" onclick="location.href='/Lecturer/LecturerLogin'">Lecturer Login</button>
-        <!-- Button to navigate to the Lecturer Sign Up -->
         <button class="btn-navigate" onclick="location.href='/Lecturer/LecturerSignUp'">Lecturer Sign Up</button>
-        <!-- Button to navigate to the Admin Login -->
         <button class="btn-navigate" onclick="location.href='/Admin/AdminLogin'">Admin Login</button>
-        <!-- Button to navigate to the Dashboard -->
-        <button class="btn-navigate" onclick="location.href='/Lecturer/Dashboard'">Dashboard</button>
-
-        <!-- Button to navigate to Submit Claim -->
-        <button class="btn-navigate" onclick="location.href='/Lecturer/SubmitClaim'">Submit Claim</button>
-
-        <!-- Button to navigate to Approve/Deny Claims -->
-        <button class="btn-navigate" onclick="location.href='/Admin/ApproveDenyClaims'">Approve/Deny Claims</button>
     </div>
 </body>
 </html>

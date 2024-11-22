@@ -1,15 +1,79 @@
-﻿@model Shaun_Faulkner_ST10034664_PROG6212_POE.Models.Lecturer;
+﻿@model Shaun_Faulkner_ST10034664_PROG6212_POE.Models.Lecturer
 
-<h2>Lecturer Login</h2>
+<head>
+    <style>
+        /* Styling for the login page */
+        .login-container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
 
-<form asp-controller="Lecturer" asp-action="LecturerLogin" method="post">
-    <div>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="Email" />
-    </div>
-    <div>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="Password" />
-    </div>
-    <button type="submit">Login</button>
-</form>
+        .login-title {
+            text-align: center;
+            font-size: 28px;
+            color: #0056b3;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-label {
+            font-size: 16px;
+            color: #333;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+            .form-input:focus {
+                outline: none;
+                border-color: #007bff;
+            }
+
+        .btn-primary {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+            .btn-primary:hover {
+                background-color: #0056b3;
+            }
+    </style>
+</head>
+
+<div class="login-container">
+    <h2 class="login-title">Lecturer Login</h2>
+
+    <form asp-controller="Lecturer" asp-action="LecturerLogin" method="post" class="login-form">
+        <div class="form-group">
+            <label for="email" class="form-label">Email:</label>
+            <input type="email" id="email" name="Email" class="form-input" />
+        </div>
+
+        <div class="form-group">
+            <label for="password" class="form-label">Password:</label>
+            <input type="password" id="password" name="Password" class="form-input" />
+        </div>
+
+        <button type="submit" class="btn-primary">Login</button>
+    </form>
+</div>

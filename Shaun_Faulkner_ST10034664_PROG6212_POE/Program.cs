@@ -20,6 +20,14 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(buil
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    context.Database.Migrate();
+
+    SeedDatabase(context);
+}
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
@@ -40,3 +48,20 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+static void SeedDatabase(AppDbContext context)
+{
+    if (!context.Admins.Any())
+    {
+        context.Admins.Add(new Admin
+        {
+            AdminId = 1,
+            Name = "Admin",
+            Surname = "Admin",
+            Email = "admin@gmail.com",
+            Password = "adminpassword"
+        });
+
+        context.SaveChanges();
+    }
+}

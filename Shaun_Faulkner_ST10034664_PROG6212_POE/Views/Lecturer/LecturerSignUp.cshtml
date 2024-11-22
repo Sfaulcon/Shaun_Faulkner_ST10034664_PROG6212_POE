@@ -1,23 +1,90 @@
 ﻿@model Shaun_Faulkner_ST10034664_PROG6212_POE.Models.Lecturer;
 
-<h2>Lecturer Sign Up</h2>
+<head>
+    <style>
+        .form-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
 
-<form asp-controller="Lecturer" asp-action="LecturerSignUp" method="post">
-    <div>
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="Name" asp-for="Name" />
+        .form-container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+            .form-input:focus {
+                border-color: #007bff;
+                outline: none;
+            }
+
+        .btn-submit {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+            .btn-submit:hover {
+                background-color: #0056b3;
+            }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+            a:hover {
+                text-decoration: underline;
+            }
+    </style>
+</head>
+
+<h2 class="form-title">Lecturer Sign Up</h2>
+
+<form asp-controller="Lecturer" asp-action="LecturerSignUp" method="post" class="form-container">
+    <div class="form-group">
+        <label for="name" class="form-label">Name:</label>
+        <input type="text" id="name" name="Name" asp-for="Name" class="form-input" />
     </div>
-    <div>
-        <label for="surname">Surname:</label>
-        <input type="text" id="surname" name="Surname" asp-for="Surname" />
+    <div class="form-group">
+        <label for="surname" class="form-label">Surname:</label>
+        <input type="text" id="surname" name="Surname" asp-for="Surname" class="form-input" />
     </div>
-    <div>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="Email" asp-for="Email" />
+    <div class="form-group">
+        <label for="email" class="form-label">Email:</label>
+        <input type="email" id="email" name="Email" asp-for="Email" class="form-input" />
     </div>
-    <div>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="Password" asp-for="Password" />
+    <div class="form-group">
+        <label for="password" class="form-label">Password:</label>
+        <input type="password" id="password" name="Password" asp-for="Password" class="form-input" />
     </div>
-    <button type="submit">Sign Up</button>
+    <button type="submit" class="btn-submit">Sign Up</button>
 </form>

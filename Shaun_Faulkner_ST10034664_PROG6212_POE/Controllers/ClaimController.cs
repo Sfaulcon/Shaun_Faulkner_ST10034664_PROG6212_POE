@@ -46,7 +46,6 @@ namespace Shaun_Faulkner_ST10034664_PROG6212_POE.Controllers
             claim.LecturerName = lecturerName;
             claim.LecturerEmail = lecturerEmail;
 
-            claim.Status = "Pending";
             claim.SubmissionDate = DateTime.Now;
             claim.HoursWorked = claim.HoursWorked;
             claim.HourlyRate = claim.HourlyRate;
@@ -54,7 +53,13 @@ namespace Shaun_Faulkner_ST10034664_PROG6212_POE.Controllers
 
             if (claim.HoursWorked > 0 && claim.HourlyRate > 0)
             {
+                claim.Status = "Approved";
                 claim.TotalAmount = (decimal)(claim.HoursWorked * claim.HourlyRate);
+            }
+            else
+            {
+                claim.Status = "Denied";
+                claim.TotalAmount = 0;
             }
 
             if (SupportingDocument != null && SupportingDocument.Length > 0)
