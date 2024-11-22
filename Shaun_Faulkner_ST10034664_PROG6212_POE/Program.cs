@@ -55,7 +55,6 @@ static void SeedDatabase(AppDbContext context)
     {
         context.Admins.Add(new Admin
         {
-            AdminId = 1,
             Name = "Admin",
             Surname = "Admin",
             Email = "admin@gmail.com",
