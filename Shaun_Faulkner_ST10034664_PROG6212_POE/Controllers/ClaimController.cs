@@ -64,7 +64,7 @@ namespace Shaun_Faulkner_ST10034664_PROG6212_POE.Controllers
 
             if (SupportingDocument != null && SupportingDocument.Length > 0)
             {
-                var uploadsFolder = @"C:\Users\shaun\source\repos\Shaun_Faulkner_ST10034664_PROG6212_POE\Shaun_Faulkner_ST10034664_PROG6212_POE\wwwroot\uploads\supportingdocs";
+                var uploadsFolder = @"ADD FILEPATH HERE";
 
                 Directory.CreateDirectory(uploadsFolder);
 

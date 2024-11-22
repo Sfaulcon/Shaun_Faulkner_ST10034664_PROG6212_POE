@@ -14,7 +14,7 @@ namespace Shaun_Faulkner_ST10034664_PROG6212_POE.Controllers
         private readonly AppDbContext _context;
 
         // Filepath directory
-        private readonly string _invoiceStoragePath = @"C:\Users\shaun\source\repos\Shaun_Faulkner_ST10034664_PROG6212_POE\Shaun_Faulkner_ST10034664_PROG6212_POE\wwwroot\uploads\invoices";
+        private readonly string _invoiceStoragePath = @"ADD FILEPATH HERE";
 
         public AdminController(AppDbContext context)
         {
@@ -115,7 +115,7 @@ namespace Shaun_Faulkner_ST10034664_PROG6212_POE.Controllers
                 return NotFound();
             }
 
-            string basePath = @"C:\Users\shaun\source\repos\Shaun_Faulkner_ST10034664_PROG6212_POE\Shaun_Faulkner_ST10034664_PROG6212_POE\wwwroot\uploads\invoices";
+            string basePath = @"ADD FILEPATH HERE";
             var invoicePath = Path.Combine(basePath, $"Invoice_{claim.ClaimId}.pdf");
 
             if (!System.IO.File.Exists(invoicePath))
@@ -135,7 +135,7 @@ namespace Shaun_Faulkner_ST10034664_PROG6212_POE.Controllers
                 return NotFound();
             }
 
-            string basePath = @"C:\Users\shaun\source\repos\Shaun_Faulkner_ST10034664_PROG6212_POE\Shaun_Faulkner_ST10034664_PROG6212_POE\wwwroot\uploads\invoices";
+            string basePath = @"ADD FILEPATH HERE";
             var summaryInvoicePath = Path.Combine(basePath, "ApprovedClaimsSummaryInvoice.pdf");
 
             var summaryInvoice = CreateSummaryInvoice(approvedClaims);
