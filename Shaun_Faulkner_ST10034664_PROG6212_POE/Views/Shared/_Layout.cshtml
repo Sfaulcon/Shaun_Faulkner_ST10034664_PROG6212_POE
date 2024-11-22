@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Shaun_Faulkner_ST10034664_PROG6212_POE.Models
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -22,6 +24,38 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
+
+                       
+                        @if (ViewData["LecturerId"] != null)
+                        { 
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Lecturer" asp-action="Dashboard">Dashboard</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Lecturer" asp-action="Logout">Logout</a>
+                            </li>
+                        }
+
+                        
+                        @if (ViewData["AdminId"] != null)
+                        {                           
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="AdminDashboard">Dashboard</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Logout">Logout</a>
+                            </li>
+                        }
+
+                        @if (ViewData["LecturerId"] == null && ViewData["AdminId"] == null)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Lecturer" asp-action="LecturerLogin">Lecturer Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="AdminLogin">Admin Login</a>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>

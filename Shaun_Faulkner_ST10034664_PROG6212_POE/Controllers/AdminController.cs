@@ -29,26 +29,53 @@ namespace Shaun_Faulkner_ST10034664_PROG6212_POE.Controllers
         [HttpPost]
         public IActionResult AdminLogin(string email, string password)
         {
-            var admin = _context.Admins.FirstOrDefault(a => a.Email == email && a.Password == password);
-
-            if (admin != null)
+            if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
             {
-                HttpContext.Session.SetString("AdminEmail", admin.Email);
-                return RedirectToAction("AdminDashboard");
-            }
-            else
-            {
-                ModelState.AddModelError("", "Invalid email or password.");
+                ModelState.AddModelError(string.Empty, "Both fields are required.");
                 return View();
             }
+
+            var admin = _context.Admins.SingleOrDefault(a => a.Email == email && a.Password == password);
+
+            if (admin == null)
+            {
+                ModelState.AddModelError(string.Empty, "Invalid Email or Password.");
+                return View();
+            }
+
+            ViewData["AdminId"] = admin.AdminId.ToString();
+            ViewData["AdminName"] = admin.Name;
+
+            HttpContext.Session.SetString("AdminId", admin.AdminId.ToString());
+            HttpContext.Session.SetString("AdminName", admin.Name);
+            HttpContext.Session.SetString("AdminEmail", admin.Email);
+
+            return RedirectToAction("AdminDashboard");
         }
 
         public IActionResult AdminDashboard()
         {
-            if (string.IsNullOrEmpty(HttpContext.Session.GetString("AdminEmail")))
+
+            var adminEmail = HttpContext.Session.GetString("AdminEmail");
+
+            if (string.IsNullOrEmpty(adminEmail))
             {
+                Console.WriteLine("AdminEmail is null or empty.");
                 return RedirectToAction("AdminLogin");
             }
+
+            var adminIdStr = HttpContext.Session.GetString("AdminId");
+            if (string.IsNullOrEmpty(adminIdStr))
+            {
+                Console.WriteLine("AdminId is null or empty.");
+                return RedirectToAction("AdminLogin");
+            }
+
+            var adminId = int.Parse(adminIdStr);
+            var adminName = HttpContext.Session.GetString("AdminName");
+
+            ViewData["AdminId"] = adminId;
+            ViewData["AdminName"] = adminName;
 
             var model = new ClaimsDashboardViewModel
             {

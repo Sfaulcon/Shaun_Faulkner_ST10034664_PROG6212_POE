@@ -122,18 +122,6 @@
                 text-decoration: underline;
             }
 
-        /* Logout Link */
-        a[asp-action="Logout"] {
-            display: block;
-            margin: 10px auto;
-            text-align: center;
-            color: #F44336;
-            text-decoration: none;
-        }
-
-            a[asp-action="Logout"]:hover {
-                text-decoration: underline;
-            }
     </style>
 </head>
 
@@ -267,9 +255,7 @@
         <p>No Denied Claims Available</p>
     }
 
-    <!-- Logout and Navigation -->
-    <p>You are logged in</p>
-    <a asp-controller="Admin" asp-action="Logout">Logout</a>
+    <!-- Navigation -->
 
     <p class="back-to-home"><a href="/Home/Index">Back to Home</a></p>
 </body>

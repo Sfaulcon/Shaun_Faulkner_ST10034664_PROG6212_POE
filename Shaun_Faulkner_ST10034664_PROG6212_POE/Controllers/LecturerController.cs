@@ -2,6 +2,7 @@
 using Shaun_Faulkner_ST10034664_PROG6212_POE.Data;
 using Shaun_Faulkner_ST10034664_PROG6212_POE.Models;
 using Microsoft.AspNetCore.Http;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Shaun_Faulkner_ST10034664_PROG6212_POE.Controllers
 {
@@ -72,6 +73,9 @@ namespace Shaun_Faulkner_ST10034664_PROG6212_POE.Controllers
             }
 
             var lecturerId = int.Parse(HttpContext.Session.GetString("LecturerId"));
+
+            ViewData["LecturerId"] = lecturerId;
+            ViewData["LecturerName"] = HttpContext.Session.GetString("LecturerName");
 
             var pendingClaims = _context.Claims.Where(c => c.LecturerId == lecturerId && c.Status == "Pending").ToList();
             var approvedClaims = _context.Claims.Where(c => c.LecturerId == lecturerId && c.Status == "Approved").ToList();

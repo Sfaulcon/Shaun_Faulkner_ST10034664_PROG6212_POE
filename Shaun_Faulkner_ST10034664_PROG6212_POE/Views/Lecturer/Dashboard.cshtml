@@ -52,9 +52,8 @@
         }
 
         .action-links .btn-primary,
-        .action-links .btn-secondary,
-        .btn-logout,
-        .btn-back {
+        .action-links .btn-secondary
+         {
             display: inline-block;
             margin: 10px 0;
             padding: 10px 15px;
@@ -72,16 +71,6 @@
             background-color: #28a745;
         }
 
-        .btn-logout, .btn-back {
-            background-color: #dc3545;
-        }
-
-            .btn-primary:hover,
-            .btn-secondary:hover,
-            .btn-logout:hover,
-            .btn-back:hover {
-                opacity: 0.9;
-            }
 
         .btn-download {
             color: #0056b3;
@@ -90,6 +79,16 @@
 
             .btn-download:hover {
                 color: #003d80;
+            }
+
+        .back-to-home a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+            .back-to-home a:hover {
+                text-decoration: underline;
             }
     </style>
 </head>
@@ -210,13 +209,8 @@
             <a asp-controller="Lecturer" asp-action="ManageProfile" class="btn-secondary">Manage Profile</a>
         </p>
 
-        <p class="logout-link">
-            You are logged in |
-            <a asp-controller="Lecturer" asp-action="Logout" class="btn-logout">Logout</a>
-        </p>
-
         <p class="back-to-home">
-            <a href="/Home/Index" class="btn-back">Back to Home</a>
+            <a href="/Home/Index">Back to Home</a>
         </p>
     </div>
 </body>
