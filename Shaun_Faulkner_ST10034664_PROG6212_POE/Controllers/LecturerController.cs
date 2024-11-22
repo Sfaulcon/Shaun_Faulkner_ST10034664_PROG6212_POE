@@ -72,15 +72,74 @@ namespace Shaun_Faulkner_ST10034664_PROG6212_POE.Controllers
             }
 
             var lecturerId = int.Parse(HttpContext.Session.GetString("LecturerId"));
-            var claims = _context.Claims.Where(c => c.LecturerId == lecturerId).ToList();
 
-            return View(claims);
+            var pendingClaims = _context.Claims.Where(c => c.LecturerId == lecturerId && c.Status == "Pending").ToList();
+            var approvedClaims = _context.Claims.Where(c => c.LecturerId == lecturerId && c.Status == "Approved").ToList();
+            var deniedClaims = _context.Claims.Where(c => c.LecturerId == lecturerId && c.Status == "Denied").ToList();
+
+            foreach (var claim in approvedClaims)
+            {
+                if (claim.Status == "Approved")
+                {
+                    var invoicePath = Path.Combine("/invoices", $"Invoice_{claim.ClaimId}.pdf");
+                    claim.InvoicePath = invoicePath;
+                }
+            }
+
+            var model = new ClaimsDashboardViewModel
+            {
+                PendingClaims = pendingClaims,
+                ApprovedClaims = approvedClaims,
+                DeniedClaims = deniedClaims
+            };
+
+            return View(model);
         }
 
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
             return RedirectToAction("LecturerLogin");
+        }
+
+        public IActionResult ManageProfile()
+        {
+            var lecturerId = int.Parse(HttpContext.Session.GetString("LecturerId"));
+
+            var lecturer = _context.Lecturers.FirstOrDefault(l => l.LecturerId == lecturerId);
+
+            if (lecturer == null)
+            {
+                return View("LecturerLogin");
+            }
+
+            return View(lecturer);
+        }
+
+        [HttpPost]
+        public IActionResult UpdateProfile(Lecturer lecturer)
+        {
+            var lecturerId = int.Parse(HttpContext.Session.GetString("LecturerId"));
+
+            var existingLecturer = _context.Lecturers.FirstOrDefault(l => l.LecturerId == lecturerId);
+
+            if (existingLecturer == null)
+            {
+                return RedirectToAction("LecturerLogin");
+            }
+
+            existingLecturer.Name = lecturer.Name;
+            existingLecturer.Surname = lecturer.Surname;
+            existingLecturer.Email = lecturer.Email;
+
+            if (!string.IsNullOrEmpty(lecturer.Password))
+            {
+                existingLecturer.Password = lecturer.Password;
+            }
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Dashboard");
         }
     }
 }

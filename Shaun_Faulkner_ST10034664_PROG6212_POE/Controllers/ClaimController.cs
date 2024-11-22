@@ -59,9 +59,12 @@ namespace Shaun_Faulkner_ST10034664_PROG6212_POE.Controllers
 
             if (SupportingDocument != null && SupportingDocument.Length > 0)
             {
-                var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
+                var uploadsFolder = @"C:\Users\shaun\source\repos\Shaun_Faulkner_ST10034664_PROG6212_POE\Shaun_Faulkner_ST10034664_PROG6212_POE\wwwroot\uploads\supportingdocs";
+
                 Directory.CreateDirectory(uploadsFolder);
+
                 var uniqueFileName = Guid.NewGuid().ToString() + "_" + SupportingDocument.FileName;
+
                 var filePath = Path.Combine(uploadsFolder, uniqueFileName);
 
                 using (var fileStream = new FileStream(filePath, FileMode.Create))

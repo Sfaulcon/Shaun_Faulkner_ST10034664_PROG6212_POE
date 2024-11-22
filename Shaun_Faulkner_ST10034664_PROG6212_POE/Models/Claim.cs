@@ -18,5 +18,7 @@ namespace Shaun_Faulkner_ST10034664_PROG6212_POE.Models
         public DateTime SubmissionDate { get; set; }
         public string Status { get; set; }
         public decimal TotalAmount { get; set; }
+        public string InvoicePath { get; set; }
+
     }
 }

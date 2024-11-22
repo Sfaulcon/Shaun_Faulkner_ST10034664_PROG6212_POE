@@ -1,54 +1,244 @@
-﻿
+﻿@model ClaimsDashboardViewModel
 
 @{
     ViewData["Title"] = "Admin Dashboard";
 }
 
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #333;
+            text-align: center;
+        }
+
+        h3 {
+            margin-top: 40px;
+            color: #444;
+        }
+
+        .claim-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            background-color: #fff;
+        }
+
+            .claim-table th, .claim-table td {
+                padding: 10px;
+                text-align: left;
+                border: 1px solid #ddd;
+            }
+
+            .claim-table th {
+                background-color: #f2f2f2;
+                color: #333;
+            }
+
+            .claim-table tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+
+            .claim-table tr:hover {
+                background-color: #e2e2e2;
+            }
+
+            .claim-table td {
+                vertical-align: middle;
+            }
+
+            .claim-table .approve-btn,
+            .claim-table .deny-btn {
+                padding: 5px 10px;
+                color: #fff;
+                border: none;
+                cursor: pointer;
+                font-size: 14px;
+                text-align: center;
+            }
+
+        .approve-btn {
+            background-color: #28a745;
+        }
+
+        .deny-btn {
+            background-color: #dc3545;
+        }
+
+        .approve-btn:hover {
+            background-color: #218838;
+        }
+
+        .deny-btn:hover {
+            background-color: #c82333;
+        }
+
+        /* No Claims Message */
+        p {
+            font-size: 16px;
+            color: #666;
+            text-align: center;
+        }
+
+        /* Back to Home and Logout Links */
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+            a:hover {
+                text-decoration: underline;
+            }
+
+        .back-to-home {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
 <h2>@ViewData["Title"]</h2>
 
 <h3>Pending Claims</h3>
-
-<table>
-    <thead>
-        <tr>
-            <th>Lecturer Name</th>
-            <th>Lecturer Email</th>
-            <th>Hours Worked</th>
-            <th>Hourly Rate</th>
-            <th>Additional Notes</th>
-            <th>Supporting Documents</th>
-            <th>Total Amount Payable</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var claim in Model)
-        {
+@if (Model.PendingClaims.Any())
+{
+    <table class="claim-table pending-table">
+        <thead>
             <tr>
-                <td>@claim.LecturerName</td>
-                <td>@claim.LecturerEmail</td>
-                <td>@claim.HoursWorked</td>
-                <td>R @claim.HourlyRate</td>
-                <td>@claim.AdditionalNotes</td>
-                <td>@claim.SupportingDocuments</td>
-                <td>R @claim.TotalAmount</td>
-                <td>
-                    <form method="post" action="@Url.Action("ApproveDenyClaims", "Admin")">
-                        <input type="hidden" name="claimId" value="@claim.ClaimId" />
-                        <input type="hidden" name="status" value="Approved" />
-                        <button type="submit">Approve</button>
-                    </form>
-                    |
-                    <form method="post" action="@Url.Action("ApproveDenyClaims", "Admin")">
-                        <input type="hidden" name="claimId" value="@claim.ClaimId" />
-                        <input type="hidden" name="status" value="Denied" />
-                        <button type="submit">Deny</button>
-                    </form>
-                </td>
+                <th>Lecturer Name</th>
+                <th>Lecturer Email</th>
+                <th>Hours Worked</th>
+                <th>Hourly Rate</th>
+                <th>Additional Notes</th>
+                <th>Supporting Documents</th>
+                <th>Total Amount Payable</th>
+                <th>Action</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var claim in Model.PendingClaims)
+            {
+                <tr>
+                    <td>@claim.LecturerName</td>
+                    <td>@claim.LecturerEmail</td>
+                    <td>@claim.HoursWorked</td>
+                    <td>R @claim.HourlyRate</td>
+                    <td>@claim.AdditionalNotes</td>
+                    <td>@claim.SupportingDocuments</td>
+                    <td>R @claim.TotalAmount</td>
+                    <td>
+                        <form method="post" action="@Url.Action("ApproveDenyClaims", "Admin")">
+                            <input type="hidden" name="claimId" value="@claim.ClaimId" />
+                            <input type="hidden" name="status" value="Approved" />
+                            <button type="submit" class="approve-btn">Approve</button>
+                        </form>
+                        |
+                        <form method="post" action="@Url.Action("ApproveDenyClaims", "Admin")">
+                            <input type="hidden" name="claimId" value="@claim.ClaimId" />
+                            <input type="hidden" name="status" value="Denied" />
+                            <button type="submit" class="deny-btn">Deny</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No Pending Claims Available</p>
+}
 
+<!-- Approved Claims Table -->
+<h3>Approved Claims</h3>
+@if (Model.ApprovedClaims.Any())
+{
+    <table class="claim-table approved-table">
+        <thead>
+            <tr>
+                <th>Lecturer Name</th>
+                <th>Lecturer Email</th>
+                <th>Hours Worked</th>
+                <th>Hourly Rate</th>
+                <th>Additional Notes</th>
+                <th>Supporting Documents</th>
+                <th>Total Amount Payable</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var claim in Model.ApprovedClaims)
+            {
+                <tr>
+                    <td>@claim.LecturerName</td>
+                    <td>@claim.LecturerEmail</td>
+                    <td>@claim.HoursWorked</td>
+                    <td>R @claim.HourlyRate</td>
+                    <td>@claim.AdditionalNotes</td>
+                    <td>@claim.SupportingDocuments</td>
+                    <td>R @claim.TotalAmount</td>
+                    <td>
+                        <a href="@Url.Action("GenerateInvoice","Admin", new { claimId = claim.ClaimId })" class="btn btn-primary">Download Invoice</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No Approved Claims Available</p>
+}
+
+@if (Model.ApprovedClaims.Any())
+{
+    <a href="@Url.Action("GenerateAllApprovedInvoices", "Admin")" class="btn btn-secondary">Download All Approved Claims Invoice</a>
+}
+
+<!-- Denied Claims Table -->
+<h3>Denied Claims</h3>
+@if (Model.DeniedClaims.Any())
+{
+    <table class="claim-table denied-table">
+        <thead>
+            <tr>
+                <th>Lecturer Name</th>
+                <th>Lecturer Email</th>
+                <th>Hours Worked</th>
+                <th>Hourly Rate</th>
+                <th>Additional Notes</th>
+                <th>Supporting Documents</th>
+                <th>Total Amount Payable</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var claim in Model.DeniedClaims)
+            {
+                <tr>
+                    <td>@claim.LecturerName</td>
+                    <td>@claim.LecturerEmail</td>
+                    <td>@claim.HoursWorked</td>
+                    <td>R @claim.HourlyRate</td>
+                    <td>@claim.AdditionalNotes</td>
+                    <td>@claim.SupportingDocuments</td>
+                    <td>R @claim.TotalAmount</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No Denied Claims Available</p>
+}
+
+<!-- Logout and Navigation -->
 <p>You are logged in</p>
 <a asp-controller="Admin" asp-action="Logout">Logout</a>
+
+<p class="back-to-home"><a href="/Home/Index">Back to Home</a></p>
